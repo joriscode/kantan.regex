@@ -29,7 +29,7 @@ class ErrorTests extends DisciplineSuite {
   checkAll("DecodeError", EqTests[DecodeError].eqv)
   checkAll("DecodeError.NoSuchGroupId", EqTests[DecodeError.NoSuchGroupId].eqv)
   checkAll("DecodeError.TypeError", EqTests[DecodeError.TypeError].eqv)
-  checkAll("DecodeError.EmptyGroup", EqTests[DecodeError.EmptyGroup.type].eqv)
+  checkAll("DecodeError.EmptyGroup", EqTests[DecodeError.EmptyGroup].eqv)
 
   checkAll("CompileError", EqTests[CompileError].eqv)
 
@@ -59,8 +59,8 @@ class ErrorTests extends DisciplineSuite {
   test("Show[DecodeError.EmptyGroup] should yield a string containing 'empty group'") {
     val expected = "empty group"
 
-    forAll { error: DecodeError.EmptyGroup.type =>
-      Show[DecodeError.EmptyGroup.type].show(error) should include(expected)
+    forAll { error: DecodeError.EmptyGroup =>
+      Show[DecodeError.EmptyGroup].show(error) should include(expected)
       Show[DecodeError].show(error) should include(expected)
       Show[RegexError].show(error) should include(expected)
     }

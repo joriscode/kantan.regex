@@ -51,8 +51,8 @@ trait ArbitraryInstances
   implicit val arbNoSuchGroupId: Arbitrary[DecodeError.NoSuchGroupId] =
     Arbitrary(arb[Int].map(DecodeError.NoSuchGroupId.apply))
 
-  implicit val arbEmptyGroup: Arbitrary[DecodeError.EmptyGroup.type] =
-    Arbitrary(Gen.const(DecodeError.EmptyGroup))
+  implicit val arbEmptyGroup: Arbitrary[DecodeError.EmptyGroup] =
+    Arbitrary(Gen.const(DecodeError.EmptyGroup()))
 
   implicit val arbDecodeError: Arbitrary[DecodeError] =
     Arbitrary(oneOf(arbNoSuchGroupId.arbitrary, arbTypeError.arbitrary, arbEmptyGroup.arbitrary))
@@ -63,12 +63,12 @@ trait ArbitraryInstances
   implicit val cogenRegexCompileError: Cogen[CompileError]               = Cogen[String].contramap(_.message)
   implicit val cogenRegexTypeError: Cogen[DecodeError.TypeError]         = Cogen[String].contramap(_.message)
   implicit val cogenRegexNoSuchGroupId: Cogen[DecodeError.NoSuchGroupId] = Cogen[Int].contramap(_.id)
-  implicit val cogenRegexEmptyGroup: Cogen[DecodeError.EmptyGroup.type]  = Cogen[Unit].contramap(_ => ())
+  implicit val cogenRegexEmptyGroup: Cogen[DecodeError.EmptyGroup]  = Cogen[Unit].contramap(_ => ())
   implicit val cogenRegexDecodeError: Cogen[DecodeError] = Cogen { (seed: Seed, err: DecodeError) =>
     err match {
       case error: DecodeError.TypeError       => cogenRegexTypeError.perturb(seed, error)
       case error: DecodeError.NoSuchGroupId   => cogenRegexNoSuchGroupId.perturb(seed, error)
-      case error: DecodeError.EmptyGroup.type => cogenRegexEmptyGroup.perturb(seed, error)
+      case error: DecodeError.EmptyGroup => cogenRegexEmptyGroup.perturb(seed, error)
     }
   }
 

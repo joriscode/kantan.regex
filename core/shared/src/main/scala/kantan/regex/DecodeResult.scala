@@ -32,5 +32,5 @@ object DecodeResult extends ResultCompanion.WithDefault[DecodeError] {
   def noSuchGroupId(id: Int): DecodeResult[Nothing] = failure(DecodeError.NoSuchGroupId(id))
 
   /** Creates a new [[kantan.regex.DecodeError.EmptyGroup EmptyGroup]] failure. */
-  val emptyGroup: DecodeResult[Nothing] = failure(DecodeError.EmptyGroup)
+  val emptyGroup: DecodeResult[Nothing] = failure(DecodeError.EmptyGroup())
 }

@@ -33,7 +33,7 @@ package object cats extends DecoderInstances with CommonInstances {
   implicit val regexCompileErrorEq: Eq[CompileError]               = Eq.fromUniversalEquals
   implicit val regexNoSuchGroupIdEq: Eq[DecodeError.NoSuchGroupId] = Eq.fromUniversalEquals
   implicit val regexTypeErrorEq: Eq[DecodeError.TypeError]         = Eq.fromUniversalEquals
-  implicit val regexEmptyGroupEq: Eq[DecodeError.EmptyGroup.type]  = Eq.fromUniversalEquals
+  implicit val regexEmptyGroupEq: Eq[DecodeError.EmptyGroup]  = Eq.fromUniversalEquals
   implicit val regexDecodeErrorEq: Eq[DecodeError]                 = Eq.fromUniversalEquals
   implicit val regexRegexErrorEq: Eq[RegexError]                   = Eq.fromUniversalEquals
 

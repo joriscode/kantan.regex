@@ -29,7 +29,7 @@ class ErrorTests extends ScalazDisciplineSuite {
   checkAll("DecodeError", equ.laws[DecodeError])
   checkAll("DecodeError.NoSuchGroupId", equ.laws[DecodeError.NoSuchGroupId])
   checkAll("DecodeError.TypeError", equ.laws[DecodeError.TypeError])
-  checkAll("DecodeError.EmptyGroup", equ.laws[DecodeError.EmptyGroup.type])
+  checkAll("DecodeError.EmptyGroup", equ.laws[DecodeError.EmptyGroup])
 
   checkAll("CompileError", equ.laws[CompileError])
 
@@ -59,8 +59,8 @@ class ErrorTests extends ScalazDisciplineSuite {
   test("Show[DecodeError.EmptyGroup] should yield a string containing 'empty group'") {
     val expected = "empty group"
 
-    forAll { error: DecodeError.EmptyGroup.type =>
-      Show[DecodeError.EmptyGroup.type].shows(error) should include(expected)
+    forAll { error: DecodeError.EmptyGroup =>
+      Show[DecodeError.EmptyGroup].shows(error) should include(expected)
       Show[DecodeError].shows(error) should include(expected)
       Show[RegexError].shows(error) should include(expected)
     }

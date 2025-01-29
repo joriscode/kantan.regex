@@ -34,7 +34,7 @@ package object scalaz extends DecoderInstances with CommonInstances {
   implicit val regexCompileErrorEqual: Equal[CompileError]               = Equal.equalA
   implicit val regexNoSuchGroupIdEqual: Equal[DecodeError.NoSuchGroupId] = Equal.equalA
   implicit val regexTypeErrorEqual: Equal[DecodeError.TypeError]         = Equal.equalA
-  implicit val regexEmptyGroupEqual: Equal[DecodeError.EmptyGroup.type]  = Equal.equalA
+  implicit val regexEmptyGroupEqual: Equal[DecodeError.EmptyGroup]  = Equal.equalA
   implicit val regexDecodeErrorEqual: Equal[DecodeError]                 = Equal.equalA
   implicit val regexRegexErrorEqual: Equal[RegexError]                   = Equal.equalA
 
